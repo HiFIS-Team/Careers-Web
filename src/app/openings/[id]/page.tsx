@@ -54,9 +54,8 @@ export default async function OpeningDetailPage({
   if (!opening) notFound();
 
   const { hiring, brand } = site;
-  const applyHref =
-    opening.applyUrl ??
-    `mailto:${brand.email}?subject=[지원] ${opening.title}`;
+  const applyHref = opening.applyUrl ?? `/openings/${opening.id}/apply`;
+  const applyExternal = Boolean(opening.applyUrl);
   const meta: [string, string][] = [
     ["직무", opening.job],
     ["고용형태", opening.employment],
@@ -206,14 +205,23 @@ export default async function OpeningDetailPage({
                 </div>
                 <p className="mt-2 text-xs text-neutral-500">{brand.address}</p>
 
-                <a
-                  href={applyHref}
-                  target={opening.applyUrl ? "_blank" : undefined}
-                  rel={opening.applyUrl ? "noopener noreferrer" : undefined}
-                  className="mt-6 hidden w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950 transition-transform hover:scale-[1.02] lg:block"
-                >
-                  지원하기
-                </a>
+                {applyExternal ? (
+                  <a
+                    href={applyHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 hidden w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950 transition-transform hover:scale-[1.02] lg:block"
+                  >
+                    지원하기
+                  </a>
+                ) : (
+                  <Link
+                    href={applyHref}
+                    className="mt-6 hidden w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950 transition-transform hover:scale-[1.02] lg:block"
+                  >
+                    지원하기
+                  </Link>
+                )}
               </div>
             </aside>
           </div>
@@ -222,14 +230,23 @@ export default async function OpeningDetailPage({
 
       {/* 모바일 하단 고정 지원 바 */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 p-3 backdrop-blur lg:hidden">
-        <a
-          href={applyHref}
-          target={opening.applyUrl ? "_blank" : undefined}
-          rel={opening.applyUrl ? "noopener noreferrer" : undefined}
-          className="block w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950"
-        >
-          지원하기
-        </a>
+        {applyExternal ? (
+          <a
+            href={applyHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950"
+          >
+            지원하기
+          </a>
+        ) : (
+          <Link
+            href={applyHref}
+            className="block w-full rounded-full bg-brand py-3.5 text-center text-base font-bold text-neutral-950"
+          >
+            지원하기
+          </Link>
+        )}
       </div>
 
       <Footer />

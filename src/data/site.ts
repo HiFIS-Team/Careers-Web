@@ -187,6 +187,35 @@ export const site = {
     ],
     processNote: "* 포지션에 따라 과제 전형이 추가될 수 있습니다.",
   },
+
+  /** 지원서 폼 설정 (제출 서류 / 동의 항목) */
+  apply: {
+    documents: [
+      { name: "이력서", required: true, note: "PDF 형식으로 올려주세요." },
+      {
+        name: "포트폴리오",
+        required: false,
+        note: "PDF 형식으로 올려주세요. (선택)",
+      },
+    ],
+    terms: [
+      {
+        id: "privacy-required",
+        title: "개인정보 필수항목 수집 및 이용 동의",
+        required: true,
+      },
+      {
+        id: "privacy-optional",
+        title: "개인정보 선택항목 수집 및 이용 동의",
+        required: false,
+      },
+      {
+        id: "third-party",
+        title: "개인정보 제3자 이용제공 동의",
+        required: false,
+      },
+    ],
+  },
 } as const;
 
 export type Site = typeof site;

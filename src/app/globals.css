@@ -29,6 +29,14 @@ body {
 
 .page-transition {
   animation: pageFade 0.3s ease-out;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+/* main이 남은 높이를 채워 푸터를 항상 맨 아래로 */
+.page-transition > main {
+  flex: 1 0 auto;
 }
 
 /* 스크롤 리빌 (뷰포트 진입 시 나타남) */

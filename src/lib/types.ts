@@ -2,6 +2,20 @@
 
 export type EmploymentType = "정규직" | "계약직" | "인턴" | "파트타임";
 
+/** 지원 시 제출 서류 항목 */
+export interface ApplyDocument {
+  name: string;
+  required: boolean;
+  note?: string;
+}
+
+/** 지원 시 동의 항목 */
+export interface ApplyTerm {
+  id: string;
+  title: string;
+  required: boolean;
+}
+
 export type CareerType = "신입" | "경력" | "경력무관";
 
 /** 직군 — 공고를 묶는 큰 단위 (필터/직군 소개 섹션과 매칭) */
