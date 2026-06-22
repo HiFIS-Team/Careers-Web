@@ -20,7 +20,7 @@ export function Mission() {
           src={mission.image}
           alt="미션"
           label="미션 이미지"
-          className="aspect-[4/3] w-full rounded-3xl"
+          className="aspect-[3/2] w-full"
           sizes="(min-width: 1024px) 50vw, 100vw"
         />
       </div>

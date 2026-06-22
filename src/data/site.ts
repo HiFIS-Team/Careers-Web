@@ -45,7 +45,7 @@ export const site = {
     eyebrow: "WHY WE EXIST",
     title: "피트니스 시장,\n우리가 바꿉니다.",
     body: "여전히 많은 사람들이 운동을 어렵고 부담스럽게 느낍니다. 피트니스스타는 누구나 즐겁게 운동하고, 꾸준히 성장할 수 있는 새로운 운동 경험을 만들어 시장의 기준을 다시 씁니다.",
-    image: "", // /images/mission.jpg
+    image: "/images/private/mission.jpg",
   },
 
   stats: {
@@ -98,7 +98,7 @@ export const site = {
         description: "개인의 성과가 아닌 팀의 성공을 추구합니다.",
       },
     ],
-    image: "", // /images/culture.jpg
+    image: "/images/private/culture.png",
   },
 
   jobGroups: {

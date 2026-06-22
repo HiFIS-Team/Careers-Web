@@ -11,7 +11,7 @@ export function Culture() {
           src={culture.image}
           alt="조직문화"
           label="조직문화 이미지"
-          className="order-last aspect-[4/3] w-full rounded-3xl lg:order-first"
+          className="order-last aspect-[3/2] w-full lg:order-first"
           sizes="(min-width: 1024px) 50vw, 100vw"
         />
         <div>
