@@ -6,6 +6,8 @@
 }
 
 html {
+  /* 인페이지 앵커 이동은 부드럽게. 라우트 이동 시 최상단 이동은
+     ScrollToTop 컴포넌트가 즉시 처리합니다. */
   scroll-behavior: smooth;
 }
 

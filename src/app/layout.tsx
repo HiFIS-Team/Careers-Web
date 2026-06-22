@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { site } from "@/data/site";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: `${site.brand.name} 채용 | 운동의 가치를 전하는 팀`,
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="antialiased">
-      <body>{children}</body>
+      <body>
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }
