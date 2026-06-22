@@ -9,6 +9,15 @@ html {
   /* 인페이지 앵커 이동은 부드럽게. 라우트 이동 시 최상단 이동은
      ScrollToTop 컴포넌트가 즉시 처리합니다. */
   scroll-behavior: smooth;
+  /* 고무줄(overscroll) 튐을 막아 경계 밖 배경이 보이지 않게 */
+  overscroll-behavior: none;
+  /* 세로 잔여 튐이 생겨도 위(헤더)·아래(푸터) 다크와 맞도록 */
+  background-color: #0a0a0a;
+}
+
+body {
+  /* 가로 오버스크롤/넘침 방지 (좌우로 끌 때 빈 배경 노출 방지) */
+  overflow-x: clip;
 }
 
 body {
