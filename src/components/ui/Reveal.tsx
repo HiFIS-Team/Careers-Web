@@ -23,10 +23,8 @@ export function Reveal({
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+        // 뷰포트에 들어오면 나타나고, 벗어나면 다시 숨겨 재진입 시 또 페이드
+        setVisible(entry.isIntersecting);
       },
       { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
     );
