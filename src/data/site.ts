@@ -73,14 +73,14 @@ export const site = {
         tagline: "누구나 한 번 더 운동하게 만드는 공간",
         description:
           "들고, 뛰고, 회복하는 운동의 본질에 집중한 프리미엄 피트니스 공간입니다.",
-        image: "", // /images/brand-gym.jpg
+        image: "/images/private/brand-gym.jpg",
       },
       {
         name: "TEAM STAR",
         tagline: "커뮤니티 기반 그룹 트레이닝",
         description:
           "함께 땀 흘리는 즐거움과 매일의 성취감을 결합한 팀 트레이닝 브랜드입니다.",
-        image: "", // /images/brand-team.jpg
+        image: "/images/private/brand-team.jpg",
       },
     ],
   },
