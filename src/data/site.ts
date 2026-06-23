@@ -14,6 +14,11 @@ export const site = {
     email: "recruit@fitnessstar.co.kr",
     /** 회사 주소 (상세 페이지 지도에 사용) — 실제 주소로 변경하세요 */
     address: "서울특별시 강남구 테헤란로 123",
+    /**
+     * 카카오톡 채널 1:1 채팅 URL (예: https://pf.kakao.com/_xxxxx/chat)
+     * 비우면 문의 버튼이 이메일로 연결됩니다.
+     */
+    kakaoChannelUrl: "",
     /** 헤더/푸터 로고 (어두운 배경용 흰색 로고, 투명 배경). 비우면 텍스트 로고 */
     logo: "/images/logo-white.png",
   },
