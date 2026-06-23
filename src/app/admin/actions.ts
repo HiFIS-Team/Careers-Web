@@ -75,3 +75,18 @@ export async function togglePublish(id: string, published: boolean) {
   revalidatePath("/");
   revalidatePath("/admin");
 }
+
+// ---- 지원자 관리 ----
+
+export async function setApplicationStatus(id: string, status: string) {
+  await requireAdmin();
+  await prisma.application.update({ where: { id }, data: { status } });
+  revalidatePath("/admin/applications");
+  revalidatePath(`/admin/applications/${id}`);
+}
+
+export async function deleteApplication(id: string) {
+  await requireAdmin();
+  await prisma.application.delete({ where: { id } });
+  revalidatePath("/admin/applications");
+}

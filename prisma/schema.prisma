@@ -45,8 +45,11 @@ model Application {
   agreedTerms  String[]
   /// 첨부 파일 메타 [{ label, name, path, size }]
   files        Json
+  /// 전형 상태: 접수 | 합격 | 불합격
+  status       String   @default("접수")
   createdAt    DateTime @default(now())
 
   @@index([openingId])
+  @@index([status])
   @@index([createdAt])
 }
