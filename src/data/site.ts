@@ -12,8 +12,6 @@ export const site = {
     nameEn: "FITNESS STAR",
     /** 채용 문의 메일 */
     email: "wnstmd1245@naver.com",
-    /** 회사 주소 (상세 페이지 지도에 사용) — 실제 주소로 변경하세요 */
-    address: "서울특별시 강남구 테헤란로 123",
     /**
      * 카카오톡 채널 1:1 채팅 URL (예: https://pf.kakao.com/_xxxxx/chat)
      * 비우면 문의 버튼이 이메일로 연결됩니다.
@@ -22,6 +20,9 @@ export const site = {
     /** 헤더/푸터 로고 (어두운 배경용 흰색 로고, 투명 배경). 비우면 텍스트 로고 */
     logo: "/images/logo-white.png",
   },
+
+  /** 지점 목록 (공고 필터의 '지점'에 사용). 공고의 근무지와 이름이 같으면 매칭됩니다. */
+  branches: ["화순점", "첨단점", "동광주점"],
 
   nav: [
     { label: "브랜드", href: "/#brands" },

@@ -54,12 +54,14 @@ export default async function OpeningDetailPage({
   const { hiring, brand } = site;
   const applyHref = opening.applyUrl ?? `/openings/${opening.id}/apply`;
   const applyExternal = Boolean(opening.applyUrl);
-  const mapAddress = opening.address || brand.address;
+  const mapAddress = opening.address;
   const meta: [string, string][] = [
     ["직무", opening.job],
     ["고용형태", opening.employment],
     ["경력", opening.career],
-    ...(opening.salary ? ([["급여", opening.salary]] as [string, string][]) : []),
+    ...(opening.salary && opening.salary.length > 0
+      ? ([["급여", opening.salary.join("\n")]] as [string, string][])
+      : []),
     ...(opening.workHours && opening.workHours.length > 0
       ? ([["근무 시간", opening.workHours.join("\n")]] as [string, string][])
       : []),

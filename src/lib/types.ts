@@ -32,12 +32,12 @@ export interface Opening {
   job: string;
   /** 근무지 (짧은 표기, 예: 서울 본사) */
   location: string;
-  /** 지도용 실제 주소 (선택) */
-  address?: string;
+  /** 지도용 실제 주소 (필수) */
+  address: string;
   employment: EmploymentType;
   career: CareerType;
-  /** 급여 (자유 텍스트, 선택) */
-  salary?: string;
+  /** 급여 (여러 줄, 선택) */
+  salary?: string[];
   /** 근무 시간 (여러 줄, 선택) */
   workHours?: string[];
   /** 카드에 노출되는 한 줄 요약 */

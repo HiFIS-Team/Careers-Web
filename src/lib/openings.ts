@@ -7,10 +7,10 @@ type Row = {
   group: string;
   job: string;
   location: string;
-  address: string | null;
+  address: string;
   employment: string;
   career: string;
-  salary: string | null;
+  salary: string[];
   workHours: string[];
   summary: string;
   hot: boolean;
@@ -29,10 +29,10 @@ function toOpening(o: Row): Opening {
     group: o.group as JobGroupKey,
     job: o.job,
     location: o.location,
-    address: o.address ?? undefined,
+    address: o.address,
     employment: o.employment as EmploymentType,
     career: o.career as CareerType,
-    salary: o.salary ?? undefined,
+    salary: o.salary,
     workHours: o.workHours,
     summary: o.summary,
     hot: o.hot,

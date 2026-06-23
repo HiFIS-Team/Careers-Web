@@ -16,13 +16,13 @@ model Opening {
   location         String
   employment       String // 정규직 | 계약직 | 인턴 | 파트타임
   career           String // 신입 | 경력 | 경력무관
-  /// 급여 (자유 텍스트, 비우면 미표시)
-  salary           String?
+  /// 급여 (여러 줄, 비우면 미표시)
+  salary           String[]
   /// 근무 시간 (여러 줄, 비우면 미표시)
   workHours        String[]
   summary          String
-  /// 지도에 표시할 실제 주소 (비우면 대표 주소 사용)
-  address          String?
+  /// 지도에 표시할 실제 주소 (필수)
+  address          String
   hot              Boolean  @default(false)
   applyUrl         String?
   description      String?

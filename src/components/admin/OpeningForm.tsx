@@ -14,7 +14,7 @@ type Defaults = {
   address?: string | null;
   employment?: string;
   career?: string;
-  salary?: string | null;
+  salary?: string[];
   workHours?: string[];
   summary?: string;
   hot?: boolean;
@@ -35,7 +35,7 @@ type PreviewData = {
   location: string;
   employment: string;
   career: string;
-  salary: string;
+  salary: string[];
   workHours: string[];
   hot: boolean;
   description: string;
@@ -83,7 +83,7 @@ function readForm(form: HTMLFormElement): PreviewData {
     location: str("location"),
     employment: str("employment"),
     career: str("career"),
-    salary: str("salary"),
+    salary: lines("salary"),
     workHours: lines("workHours"),
     hot: fd.get("hot") === "on",
     description: str("description"),
@@ -124,7 +124,9 @@ function PreviewModal({
     ["직무", data.job],
     ["고용형태", data.employment],
     ["경력", data.career],
-    ...(data.salary ? ([["급여", data.salary]] as [string, string][]) : []),
+    ...(data.salary.length > 0
+      ? ([["급여", data.salary.join("\n")]] as [string, string][])
+      : []),
     ...(data.workHours.length > 0
       ? ([["근무 시간", data.workHours.join("\n")]] as [string, string][])
       : []),
@@ -266,10 +268,8 @@ export function OpeningForm({
             <input name="location" required defaultValue={defaults.location} className={field} placeholder="예) 서울 본사" />
           </div>
           <div className="sm:col-span-2">
-            <label className={label}>
-              지도 주소 <span className={hint}>(선택 · 비우면 대표 주소)</span>
-            </label>
-            <input name="address" defaultValue={defaults.address ?? ""} className={field} placeholder="예) 서울특별시 강남구 테헤란로 123" />
+            <label className={label}>지도 주소 *</label>
+            <input name="address" required defaultValue={defaults.address ?? ""} className={field} placeholder="예) 서울특별시 강남구 테헤란로 123" />
           </div>
           <div>
             <label className={label}>고용형태 *</label>
@@ -289,11 +289,17 @@ export function OpeningForm({
           </div>
           <div>
             <label className={label}>
-              급여 <span className={hint}>(선택)</span>
+              급여 <span className={hint}>(선택 · 줄바꿈으로 여러 개)</span>
             </label>
-            <input name="salary" defaultValue={defaults.salary ?? ""} className={field} placeholder="예) 면접 후 협의 / 3,000만원~" />
+            <textarea
+              name="salary"
+              rows={3}
+              defaultValue={(defaults.salary ?? []).join("\n")}
+              className={field}
+              placeholder={"예) 면접 후 협의\n경력에 따라 협의"}
+            />
           </div>
-          <div className="sm:col-span-2">
+          <div>
             <label className={label}>
               근무 시간 <span className={hint}>(선택 · 줄바꿈으로 여러 개)</span>
             </label>

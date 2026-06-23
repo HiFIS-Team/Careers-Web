@@ -13,10 +13,17 @@ import type {
 type GroupFilter = "all" | JobGroupKey;
 type EmploymentFilter = "all" | EmploymentType;
 type CareerFilter = "all" | CareerType;
+type BranchFilter = "all" | string;
 
 const GROUP_FILTERS: { key: GroupFilter; label: string }[] = [
   { key: "all", label: "전체" },
   ...site.jobGroups.items.map((g) => ({ key: g.key, label: g.name })),
+];
+
+// 지점 목록 (site.ts) 고정 표시. 공고의 근무지(location)와 매칭.
+const BRANCH_FILTERS: { key: BranchFilter; label: string }[] = [
+  { key: "all", label: "전체" },
+  ...site.branches.map((b) => ({ key: b, label: b })),
 ];
 
 // 폼(OpeningForm)의 선택지와 동일하게 고정. 등록된 공고 유무와 무관하게 항상 표시.
@@ -78,19 +85,26 @@ function FilterRow<T extends string>({
 
 export function OpeningsFilter({ openings }: { openings: Opening[] }) {
   const [group, setGroup] = useState<GroupFilter>("all");
+  const [branch, setBranch] = useState<BranchFilter>("all");
   const [employment, setEmployment] = useState<EmploymentFilter>("all");
   const [career, setCareer] = useState<CareerFilter>("all");
 
   const filtered = openings.filter(
     (o) =>
       (group === "all" || o.group === group) &&
+      (branch === "all" || o.location.includes(branch)) &&
       (employment === "all" || o.employment === employment) &&
       (career === "all" || o.career === career)
   );
 
-  const isFiltered = group !== "all" || employment !== "all" || career !== "all";
+  const isFiltered =
+    group !== "all" ||
+    branch !== "all" ||
+    employment !== "all" ||
+    career !== "all";
   const reset = () => {
     setGroup("all");
+    setBranch("all");
     setEmployment("all");
     setCareer("all");
   };
@@ -105,6 +119,12 @@ export function OpeningsFilter({ openings }: { openings: Opening[] }) {
             value={group}
             options={GROUP_FILTERS}
             onChange={setGroup}
+          />
+          <FilterRow
+            label="지점"
+            value={branch}
+            options={BRANCH_FILTERS}
+            onChange={setBranch}
           />
           <div className="h-px bg-neutral-200" />
           <FilterRow
