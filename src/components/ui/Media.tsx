@@ -12,6 +12,7 @@ export function Media({
   className = "",
   sizes = "100vw",
   priority = false,
+  position = "center",
 }: {
   src?: string;
   alt: string;
@@ -19,6 +20,8 @@ export function Media({
   className?: string;
   sizes?: string;
   priority?: boolean;
+  /** 이미지 crop 기준 위치 (예: "center", "50% 35%") — 인물 잘림 방지용 */
+  position?: string;
 }) {
   return (
     <div className={`relative overflow-hidden bg-neutral-200 ${className}`}>
@@ -30,6 +33,7 @@ export function Media({
           sizes={sizes}
           priority={priority}
           className="object-cover"
+          style={{ objectPosition: position }}
         />
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 text-neutral-400">

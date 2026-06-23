@@ -110,21 +110,24 @@ export const site = {
         name: "오피스 직군",
         description:
           "기획·마케팅·디자인·경영지원 등 본사에서 브랜드와 사업의 성장을 이끕니다.",
-        image: "", // /images/group-office.jpg
+        image: "/images/private/group-office.jpg",
+        imagePosition: "center" as const,
       },
       {
         key: "field" as JobGroupKey,
         name: "현장 관리자",
         description:
           "지점 운영과 공간개발을 통해 현장의 고객 경험과 성과를 만듭니다.",
-        image: "", // /images/group-field.jpg
+        image: "/images/private/group-field.png",
+        imagePosition: "center" as const,
       },
       {
         key: "coach" as JobGroupKey,
         name: "코치 · 크루",
         description:
           "수업과 현장 응대로 회원의 건강에 직접 기여하며 빠르게 성장합니다.",
-        image: "", // /images/group-coach.jpg
+        image: "/images/private/group-coach.jpg",
+        imagePosition: "50% 35%" as const,
       },
     ],
   },

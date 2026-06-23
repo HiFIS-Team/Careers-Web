@@ -26,6 +26,7 @@ export function JobGroups() {
               label={`${group.name} 이미지`}
               className="aspect-[3/2] w-full"
               sizes="(min-width: 768px) 33vw, 100vw"
+              position={group.imagePosition}
             />
             <div className="p-6">
               <h3 className="text-xl font-bold group-hover:text-brand">
