@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { OpeningCard } from "@/components/ui/OpeningCard";
 import { site } from "@/data/site";
 import type {
@@ -17,6 +17,23 @@ type CareerFilter = "all" | CareerType;
 const GROUP_FILTERS: { key: GroupFilter; label: string }[] = [
   { key: "all", label: "전체" },
   ...site.jobGroups.items.map((g) => ({ key: g.key, label: g.name })),
+];
+
+// 폼(OpeningForm)의 선택지와 동일하게 고정. 등록된 공고 유무와 무관하게 항상 표시.
+const EMPLOYMENT_FILTERS: { key: EmploymentFilter; label: string }[] = [
+  { key: "all", label: "전체" },
+  ...(["정규직", "계약직", "인턴", "파트타임"] as EmploymentType[]).map((e) => ({
+    key: e,
+    label: e,
+  })),
+];
+
+const CAREER_FILTERS: { key: CareerFilter; label: string }[] = [
+  { key: "all", label: "전체" },
+  ...(["신입", "경력", "경력무관"] as CareerType[]).map((c) => ({
+    key: c,
+    label: c,
+  })),
 ];
 
 /** 라벨 + 칩 버튼 한 줄 */
@@ -64,28 +81,6 @@ export function OpeningsFilter({ openings }: { openings: Opening[] }) {
   const [employment, setEmployment] = useState<EmploymentFilter>("all");
   const [career, setCareer] = useState<CareerFilter>("all");
 
-  const employmentOptions = useMemo(
-    () => [
-      { key: "all" as EmploymentFilter, label: "전체" },
-      ...Array.from(new Set(openings.map((o) => o.employment))).map((e) => ({
-        key: e as EmploymentFilter,
-        label: e,
-      })),
-    ],
-    [openings]
-  );
-
-  const careerOptions = useMemo(
-    () => [
-      { key: "all" as CareerFilter, label: "전체" },
-      ...Array.from(new Set(openings.map((o) => o.career))).map((c) => ({
-        key: c as CareerFilter,
-        label: c,
-      })),
-    ],
-    [openings]
-  );
-
   const filtered = openings.filter(
     (o) =>
       (group === "all" || o.group === group) &&
@@ -115,13 +110,13 @@ export function OpeningsFilter({ openings }: { openings: Opening[] }) {
           <FilterRow
             label="고용형태"
             value={employment}
-            options={employmentOptions}
+            options={EMPLOYMENT_FILTERS}
             onChange={setEmployment}
           />
           <FilterRow
             label="경력"
             value={career}
-            options={careerOptions}
+            options={CAREER_FILTERS}
             onChange={setCareer}
           />
         </div>
