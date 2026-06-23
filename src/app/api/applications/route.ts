@@ -3,6 +3,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { prisma } from "@/lib/prisma";
+import {
+  notifyNewApplication,
+  notifyApplicationReceived,
+} from "@/lib/notify";
 
 /** 파일 처리를 위해 Node 런타임에서 실행 */
 export const runtime = "nodejs";
@@ -88,7 +92,11 @@ export async function POST(request: Request) {
       },
     });
 
-    // TODO: 카카오톡 알림 발송 (담당자에게 새 지원 알림)
+    // 알림톡: 직원에게 새 지원 알림 + 지원자에게 지원 완료 (미설정 시 자동 스킵)
+    await Promise.allSettled([
+      notifyNewApplication(application),
+      notifyApplicationReceived(application),
+    ]);
 
     return NextResponse.json({ ok: true, id: application.id });
   } catch (err) {
