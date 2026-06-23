@@ -7,7 +7,7 @@ export function Stats() {
     <Section className="bg-neutral-50">
       <div className="text-center">
         <Eyebrow>{stats.eyebrow}</Eyebrow>
-        <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
           {stats.title}
         </h2>
       </div>
