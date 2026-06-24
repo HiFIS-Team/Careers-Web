@@ -15,7 +15,7 @@ AUTH_SECRET=openssl_rand_base64_32로_생성한값
 AUTH_GOOGLE_ID=구글_클라이언트_ID
 AUTH_GOOGLE_SECRET=구글_시크릿
 ADMIN_EMAILS=admin1@gmail.com,admin2@gmail.com
-AUTH_URL=https://운영도메인
+AUTH_URL=https://fitnessstar.co.kr
 ```
 
 ## 2. 실행
@@ -39,7 +39,7 @@ docker compose cp public/images/private/mission.jpg app:/app/public/images/priva
 
 ## 5. 구글 OAuth 리디렉션 URI 추가
 Google Cloud Console → 사용자 인증 정보 → 해당 클라이언트 →
-`https://운영도메인/api/auth/callback/google` 추가.
+`https://fitnessstar.co.kr/api/auth/callback/google` 추가.
 
 ## 데이터/파일 영속
 - DB: `fis_db_data` 볼륨, 업로드: `fis_uploads` 볼륨, 인물사진: `fis_private_images` 볼륨
