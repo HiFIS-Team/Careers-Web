@@ -1,4 +1,4 @@
-name: Deploy Careers Web
+name: Deploy Frontend
 
 on:
   push:
@@ -15,5 +15,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: 2222
           script: |
-            bash ~/careers/deploy/frontend.sh
+            bash ~/deploy/frontend.sh
