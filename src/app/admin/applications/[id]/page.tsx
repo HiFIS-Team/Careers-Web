@@ -2,13 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { StatusBadge } from "@/components/admin/StatusBadge";
+import { StatusButtons } from "@/components/admin/StatusButtons";
 import { getApplication, type ApplicationFile } from "@/lib/applications";
-import { setApplicationStatus, deleteApplication } from "../../actions";
+import { deleteApplication } from "../../actions";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "지원 상세" };
-
-const STATUSES = ["서류합격", "최종합격", "불합격"];
 
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
@@ -48,27 +47,8 @@ export default async function ApplicationDetailPage({
         <p className="mt-1 text-neutral-500">{app.openingTitle}</p>
 
         {/* 상태 변경 */}
-        <div className="mt-6 flex flex-wrap items-center gap-2">
-          <span className="text-sm text-neutral-500">상태 변경:</span>
-          {STATUSES.map((s) => (
-            <form
-              key={s}
-              action={async () => {
-                "use server";
-                await setApplicationStatus(app.id, s);
-              }}
-            >
-              <button
-                className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors ${
-                  app.status === s
-                    ? "border-neutral-900 bg-neutral-900 text-white"
-                    : "border-neutral-300 text-neutral-600 hover:bg-neutral-50"
-                }`}
-              >
-                {s}
-              </button>
-            </form>
-          ))}
+        <div className="mt-6">
+          <StatusButtons appId={app.id} current={app.status} />
         </div>
 
         {/* 지원자 정보 */}

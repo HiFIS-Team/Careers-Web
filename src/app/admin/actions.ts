@@ -84,6 +84,13 @@ export async function togglePublish(id: string, published: boolean) {
 
 export async function setApplicationStatus(id: string, status: string) {
   await requireAdmin();
+  // 같은 상태면 변경/알림톡 재발송 안 함
+  const current = await prisma.application.findUnique({
+    where: { id },
+    select: { status: true },
+  });
+  if (!current || current.status === status) return;
+
   const app = await prisma.application.update({ where: { id }, data: { status } });
   // 서류합격/최종합격/불합격으로 변경 시 지원자에게 결과 알림톡 (미설정 시 자동 스킵)
   await notifyApplicationStatus(app, status);
