@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import {
   notifyNewApplication,
   notifyApplicationReceived,
+  resolveBranch,
 } from "@/lib/notify";
 
 /** 파일 처리를 위해 Node 런타임에서 실행 */
@@ -79,11 +80,19 @@ export async function POST(request: Request) {
       });
     }
 
+    // 공고의 근무지에서 지점 판별 (지점별 알림톡 발송에 사용)
+    const opening = await prisma.opening.findUnique({
+      where: { id: openingId },
+      select: { location: true },
+    });
+    const branch = resolveBranch(opening?.location);
+
     // DB 저장
     const application = await prisma.application.create({
       data: {
         openingId,
         openingTitle,
+        branch,
         name,
         email,
         phone,
