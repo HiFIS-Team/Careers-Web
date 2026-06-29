@@ -14,7 +14,8 @@ import { site } from "@/data/site";
  *   SOLAPI_PFID_N                       - 해당 지점 카카오 발신프로필(pfId)
  *   SOLAPI_TEMPLATE_NEW_N               - 직원용: 새 지원 접수
  *   SOLAPI_TEMPLATE_RECEIVED_N          - 지원자용: 지원 완료
- *   SOLAPI_TEMPLATE_PASS_N              - 지원자용: 합격
+ *   SOLAPI_TEMPLATE_DOCPASS_N           - 지원자용: 서류합격
+ *   SOLAPI_TEMPLATE_FINALPASS_N         - 지원자용: 최종합격
  *   SOLAPI_TEMPLATE_FAIL_N              - 지원자용: 불합격
  *
  * 예) site.branches = ["화순점","첨단점","동광주점"]
