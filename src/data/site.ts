@@ -153,7 +153,7 @@ export const site = {
         name: "오피스 직군",
         description:
           "기획·마케팅·디자인·경영지원 등 본사에서 브랜드와 사업의 성장을 이끕니다.",
-        image: "/images/private/group-office.jpg",
+        image: "/images/private/group-office.png",
         imagePosition: "center" as const,
       },
       {
@@ -161,8 +161,8 @@ export const site = {
         name: "현장 관리자",
         description:
           "지점 운영과 공간개발을 통해 현장의 고객 경험과 성과를 만듭니다.",
-        image: "/images/private/group-field.png",
-        imagePosition: "center" as const,
+        image: "/images/private/group-fields.jpg",
+        imagePosition: "50% 35%" as const,
       },
       {
         key: "coach" as JobGroupKey,
