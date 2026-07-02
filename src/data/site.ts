@@ -65,6 +65,33 @@ export const site = {
     ],
   },
 
+  /** 연혁 (지점별 오픈·회원·규모) */
+  history: {
+    eyebrow: "OUR HISTORY",
+    title: "지역에서 1등만 고집합니다",
+    body: "최고의 시설과 시스템으로, 함께하는 코치를 운영자까지 성장시켜드립니다.",
+    items: [
+      {
+        branch: "화순점",
+        year: "2021.07",
+        members: "4만+",
+        size: "300평",
+      },
+      {
+        branch: "동광주점",
+        year: "2023.07",
+        members: "2만+",
+        size: "700평",
+      },
+      {
+        branch: "첨단점",
+        year: "2024.07",
+        members: "2만+",
+        size: "1000평",
+      },
+    ],
+  },
+
   brands: {
     eyebrow: "OUR BRANDS",
     title: "피트니스를 혁신하는\n대표 브랜드",
@@ -105,6 +132,30 @@ export const site = {
       },
     ],
     image: "/images/private/culture.png",
+  },
+
+  /** 인재상 · 채용 우대 기준 */
+  criteria: {
+    eyebrow: "WHO WE WANT",
+    title: "이런 분과 함께하고 싶어요",
+    body: "피트니스스타의 시스템과 문화에 공감하며 함께 성장할 동료를 찾습니다.",
+    items: [
+      {
+        no: "01",
+        title: "시스템 준수 · 협업 중시",
+        desc: "회사의 시스템과 프로세스를 철저히 준수하고, 팀 협업과 소통을 중요시하는 분.",
+      },
+      {
+        no: "02",
+        title: "개인 독단 성향 지양",
+        desc: "개인의 색깔이나 독단적 성향이 강하기보다, 팀 문화에 맞춰 함께 성장할 수 있는 분.",
+      },
+      {
+        no: "03",
+        title: "AI 활용에 적극적인 분 우대",
+        desc: "AI 기반 스마트 회원 관리에 동참하고, 새로운 기술·시스템과 마케팅·운영·관리·영업 전반을 배우려는 분.",
+      },
+    ],
   },
 
   /**
@@ -175,6 +226,35 @@ export const site = {
     ],
   },
 
+  /** 커리어 성장 · 승진 경로 */
+  career: {
+    eyebrow: "CAREER PATH",
+    title: "빠른 성장, 확실한 승진",
+    body: "성과에 따라 헤드 트레이너부터 지점장까지. 경영 참여 기회로 이어지는 커리어를 제공합니다.",
+    /** 관리자 트랙 경로 (좌→우) */
+    track: ["헤드", "팀장", "점장"],
+    /** 실제 성장 사례 */
+    cases: [
+      {
+        name: "민중기 지점장",
+        branch: "화순점",
+        detail: "입사 2년차 팀장 → 3년차 지점장",
+      },
+      {
+        name: "김재훈 팀장",
+        branch: "동광주점",
+        detail: "입사 2년차 팀장",
+      },
+    ],
+    /** 성장 포인트 */
+    points: [
+      "헤드 트레이너 달성 후 관리자 트랙 진입 기회",
+      "대표 협의를 통한 승진 · 경영 참여 기회 확대",
+      "추후 신규 출점 시 운영 기회 제공",
+      "스마트 앱 시스템의 성과 데이터 기반 승진 결정",
+    ],
+  },
+
   /**
    * 복리후생 (메인 섹션, 이모지 그리드).
    * 공고 상세의 hiring.benefits 와는 별개로, 메인에서 가볍게 보여주는 용도.
@@ -183,6 +263,15 @@ export const site = {
     eyebrow: "BENEFITS",
     title: "성장과 삶의 질, 둘 다 챙깁니다",
     body: "코치와 크루가 오래 일할 수 있도록 다양한 혜택을 제공합니다.",
+    /** 성과 상여 · 인센티브 (구체 금액) */
+    incentives: [
+      { label: "우수사원", amount: "최대 100만원", period: "매월", highlight: true },
+      { label: "친절왕", amount: "10만원", period: "매월", highlight: false },
+      { label: "피드백왕", amount: "10만원", period: "매월", highlight: false },
+      { label: "매출왕", amount: "50만원", period: "분기별", highlight: false },
+      { label: "생일 축하금", amount: "10만원", period: "생일", highlight: false },
+      { label: "명절 상여금", amount: "지급", period: "명절", highlight: false },
+    ],
     // icon 값은 Perks.tsx 의 아이콘 맵 키 (lucide-react)
     items: [
       { icon: "wallet", label: "인센티브제" },

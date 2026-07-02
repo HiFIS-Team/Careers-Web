@@ -35,7 +35,42 @@ export function Perks() {
         <p className="mt-4 text-lg text-neutral-300">{perks.body}</p>
       </div>
 
-      <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      {/* 성과 상여 · 인센티브 */}
+      <div className="mt-12">
+        <p className="text-sm font-semibold tracking-[0.2em] text-brand">
+          성과 상여 · 인센티브
+        </p>
+        <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+          {perks.incentives.map((inc) => (
+            <div
+              key={inc.label}
+              className={`flex flex-col gap-1 rounded-2xl p-5 ring-1 ${
+                inc.highlight
+                  ? "bg-brand text-white ring-brand"
+                  : "bg-white/5 text-white ring-white/10"
+              }`}
+            >
+              <span
+                className={`text-xs ${
+                  inc.highlight ? "text-white/80" : "text-neutral-400"
+                }`}
+              >
+                {inc.period}
+              </span>
+              <span className="text-sm font-semibold">{inc.label}</span>
+              <span
+                className={`mt-1 text-lg font-extrabold ${
+                  inc.highlight ? "text-white" : "text-brand"
+                }`}
+              >
+                {inc.amount}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {perks.items.map((perk) => {
           const Icon = ICONS[perk.icon];
           return (
