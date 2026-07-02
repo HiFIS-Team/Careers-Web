@@ -162,7 +162,7 @@ export const site = {
         description:
           "지점 운영과 공간개발을 통해 현장의 고객 경험과 성과를 만듭니다.",
         image: "/images/private/group-fields.jpg",
-        imagePosition: "50% 35%" as const,
+        imagePosition: "50% 33%" as const,
       },
       {
         key: "coach" as JobGroupKey,
