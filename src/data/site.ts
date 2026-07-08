@@ -173,8 +173,8 @@ export const site = {
         title: "단체 OT · 현장 교육",
         description:
           "신규 입사자도 빠르게 적응할 수 있도록, 현장에서 함께 배우고 익히는 교육을 진행합니다.",
-        image: "/images/private/community-1.jpg",
-        imagePosition: "50% 78%" as const,
+        image: "/images/private/community-1.png",
+        imagePosition: "50% 45%" as const,
       },
       {
         tag: "COMMUNITY",
@@ -189,8 +189,8 @@ export const site = {
         title: "비전트립 · 세미나",
         description:
           "해외 비전트립과 전문가 초청 세미나로 더 넓은 시야와 성장의 기회를 제공합니다.",
-        image: "/images/private/community-3.jpg",
-        imagePosition: "50% 72%" as const,
+        image: "/images/private/community-3.png",
+        imagePosition: "50% 50%" as const,
       },
     ],
   },
