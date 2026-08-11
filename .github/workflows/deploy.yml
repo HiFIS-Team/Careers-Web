@@ -1,20 +1,64 @@
-name: Deploy Frontend
+# 검사 + 배포
+#
+#   main 푸시 → 빌드 통과하면 홈서버에 배포
+#
+# 배포는 SSH 키로 서버의 `/usr/local/bin/deploy-careers.sh` 하나만 실행한다.
+# 그 키는 authorized_keys 에 command= 로 묶여 있어 **다른 명령은 못 돌린다**.
+
+name: 검사 · 배포
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  check:
+    name: 검사
     runs-on: ubuntu-latest
-
     steps:
-      - name: SSH Deploy
-        uses: appleboy/ssh-action@v1.0.3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: 2222
-          script: |
-            bash ~/careers/deploy/frontend.sh
+          node-version: "22"
+          cache: npm
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: 타입 검사
+        run: npx tsc --noEmit
+
+      - name: 빌드
+        run: npm run build
+        env:
+          # 빌드에만 쓰는 더미 값 — 실제 비밀은 서버 .env 에 있다
+          DATABASE_URL: postgresql://x:x@localhost:5432/x?schema=public
+          AUTH_SECRET: ci-dummy-secret-not-used-at-runtime
+          AUTH_URL: https://fitnessstar.co.kr
+
+  deploy:
+    name: 배포
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 홈서버에 배포
+        env:
+          KEY:   ${{ secrets.DEPLOY_KEY }}
+          HOST:  ${{ secrets.SSH_HOST }}
+          PORT:  ${{ secrets.SSH_PORT }}
+          USER:  ${{ secrets.SSH_USER }}
+          HOSTKEY: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY"     > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$HOSTKEY" > ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy -p "$PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes "$USER@$HOST"
