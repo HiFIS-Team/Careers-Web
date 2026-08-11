@@ -1,10 +1,15 @@
 # 홈서버 배포용 — nginx가 앞단에서 앱(127.0.0.1:3000)으로 프록시한다고 가정.
 # 서버에 .env 파일을 두고 아래 변수들을 채우세요 (FIS_DB_*, AUTH_*, ADMIN_EMAILS).
 
+# 자원 상한을 왜 두나 — 상한이 없으면 하나가 폭주할 때 **서버 전체가 같이 넘어간다.**
+# 상한이 있으면 그 컨테이너만 죽고(OOM) `restart: unless-stopped` 로 되살아난다.
+# 서버는 28GB · 8코어라 HiFIS·모니터링 몫을 남기고 잡은 값이다.
 services:
   app:
     build: .
     restart: unless-stopped
+    mem_limit: 2g
+    cpus: 2.0
     environment:
       # 분리 변수로 Prisma 연결 문자열 조립 (host는 서비스명 db)
       DATABASE_URL: postgresql://${FIS_DB_USER}:${FIS_DB_PASSWORD}@db:5432/${FIS_DB_NAME}?schema=public
@@ -54,6 +59,8 @@ services:
   db:
     image: postgres:16
     restart: unless-stopped
+    mem_limit: 2g
+    cpus: 1.0
     environment:
       POSTGRES_USER: ${FIS_DB_USER}
       POSTGRES_PASSWORD: ${FIS_DB_PASSWORD}
